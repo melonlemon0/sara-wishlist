@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sara’s Korea Wishlist 🎀</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: linear-gradient(180deg, #ffeef4, #fff6fb);
+    }
+
+    .app {
+      width: 100%;
+      max-width: 520px;
+      margin: 40px 16px;
+      background: #fff6fb;
+      border-radius: 20px;
+      padding: 24px 20px 20px;
+      box-shadow: 0 14px 34px rgba(255, 140, 184, 0.25);
+      border: 1px solid #ffd6e8;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 1.7rem;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 18px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    label {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid #ffd6e8;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+      background: #fff0f7;
+    }
+
+    input[type="text"]:focus {
+      border-color: #ff9ecb;
+      box-shadow: 0 0 0 3px rgba(255, 158, 203, 0.25);
+      background: #fff;
+    }
+
+    .name-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .name-row input {
+      flex: 1;
+    }
+
+    .name-row span {
+      font-size: 0.8rem;
+      color: #aa8da4;
+      white-space: nowrap;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff9ecb, #ffd6e8);
+      color: #5a3550;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.1s ease, box-shadow 0.1s ease,
+        opacity 0.1s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(255, 140, 184, 0.45);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: none;
+      opacity: 0.9;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .btn-secondary {
+      background: #ffeaf3;
+      box-shadow: none;
+      color: #775967;
+    }
+
+    .btn-secondary:hover {
+      box-shadow: 0 6px 14px rgba(200, 150, 180, 0.25);
+    }
+
+    .status {
+      font-size: 0.8rem;
+      color: #aa8da4;
+      margin-bottom: 8px;
+      min-height: 16px;
+    }
+
+    .list {
+      margin-top: 8px;
+      border-top: 1px dashed #ffd6e8;
+      padding-top: 10px;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      border-radius: 14px;
+      background: #fff0f7;
+      border: 1px solid #ffd6e8;
+    }
+
+    .item-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .item-text {
+      font-size: 0.98rem;
+    }
+
+    .item-meta {
+      font-size: 0.75rem;
+      color: #aa8da4;
+    }
+
+    .delete-btn {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 4px;
+      opacity: 0.6;
+      transition: opacity 0.1s;
+    }
+
+    .delete-btn:hover {
+      opacity: 1;
+    }
+
+    .empty {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #c39ab3;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 480px) {
+      .app {
+        margin: 24px 10px;
+        padding: 18px 14px 16px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>🎀 Sara’s Korea Wishlist 🎀</h1>
+
+    <div class="subtitle">
+      Think of something? Just type it and tap add. 💗
+    </div>
+
+    <form id="wishForm">
+      <div>
+        <label for="itemInput">What should Jae bring from Korea? 🍓</label>
+        <input
+          id="itemInput"
+          type="text"
+          placeholder="e.g. Honey butter chips, lip tint, seaweed..."
+          required
+        />
+      </div>
+
+      <div class="name-row">
+        <input
+          id="nameInput"
+          type="text"
+          placeholder="Your name (optional)"
+        />
+        <span>default: Sara 💕</span>
+      </div>
+
+      <div class="btn-row">
+        <button type="submit">
+          ✨ Add
+        </button>
+        <button type="button" class="btn-secondary" id="refreshBtn">
+          🌸 Refresh
+        </button>
+      </div>
+    </form>
+
+    <div class="status" id="status"></div>
+
+    <div class="list" id="list"></div>
+  </div>
+
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+    // ✅ Your actual Supabase project info
+    const SUPABASE_URL = "https://upiobealvympxbypfmkc.supabase.co";
+    const SUPABASE_ANON_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwaW9iZWFsdnltcHhieXBmbWtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzNzYxNDIsImV4cCI6MjA3ODk1MjE0Mn0.mLvGyy-eMWr-ow2b2USMg7PXKq2EUfK1fyJEsdGThKw";
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const wishForm = document.getElementById("wishForm");
+    const itemInput = document.getElementById("itemInput");
+    const nameInput = document.getElementById("nameInput");
+    const listEl = document.getElementById("list");
+    const statusEl = document.getElementById("status");
+    const refreshBtn = document.getElementById("refreshBtn");
+
+    async function loadItems() {
+      statusEl.textContent = "Loading wishlist... 🌸";
+      const { data, error } = await supabase
+        .from("wishlist_items")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error(error);
+        statusEl.textContent = "Could not load wishlist 😿";
+        return;
+      }
+
+      statusEl.textContent = "";
+      renderItems(data);
+    }
+
+    function renderItems(items) {
+      listEl.innerHTML = "";
+
+      if (!items || items.length === 0) {
+        listEl.innerHTML =
+          '<div class="empty">No wishes yet. Add your first one! ✏️</div>';
+        return;
+      }
+
+      for (const item of items) {
+        const div = document.createElement("div");
+        div.className = "item";
+
+        const main = document.createElement("div");
+        main.className = "item-main";
+
+        const text = document.createElement("div");
+        text.className = "item-text";
+        text.textContent = item.item_text;
+
+        const meta = document.createElement("div");
+        meta.className = "item-meta";
+        const who = item.added_by || "Someone";
+        const created = item.created_at
+          ? new Date(item.created_at).toLocaleString()
+          : "";
+        meta.textContent = `${who} · ${created}`;
+
+        main.appendChild(text);
+        main.appendChild(meta);
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "delete-btn";
+        delBtn.textContent = "🗑️";
+        delBtn.title = "Delete this item";
+        delBtn.addEventListener("click", () => deleteItem(item.id));
+
+        div.appendChild(main);
+        div.appendChild(delBtn);
+
+        listEl.appendChild(div);
+      }
+    }
+
+    async function addItem(text, name) {
+      statusEl.textContent = "Saving... 💌";
+      const { error } = await supabase.from("wishlist_items").insert({
+        item_text: text,
+        added_by: name || "Sara",
+      });
+
+      if (error) {
+        console.error(error);
+        statusEl.textContent = "Error saving item 😢";
+        return;
+      }
+
+      statusEl.textContent = "Saved! ✅";
+      itemInput.value = "";
+      setTimeout(() => (statusEl.textContent = ""), 1200);
+      await loadItems();
+    }
+
+    async function deleteItem(id) {
+      const ok = confirm("Delete this item from the wishlist?");
+      if (!ok) return;
+
+      statusEl.textContent = "Deleting... 🧺";
+      const { error } = await supabase
+        .from("wishlist_items")
+        .delete()
+        .eq("id", id);
+
+      if (error) {
+        console.error(error);
+        statusEl.textContent = "Could not delete item 😔";
+        return;
+      }
+
+      statusEl.textContent = "";
+      await loadItems();
+    }
+
+    wishForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const text = itemInput.value.trim();
+      if (!text) return;
+      const name = nameInput.value.trim() || "Sara";
+      addItem(text, name);
+    });
+
+    refreshBtn.addEventListener("click", () => {
+      loadItems();
+    });
+
+    // initial load
+    loadItems();
+  </script>
+</body>
+</html>
